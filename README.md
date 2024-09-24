@@ -1,8 +1,25 @@
 # Simple Library Management System - RESTful API
 
-## Objective
-The goal of this project is to enhance the Simple Library Management System by exposing it as a RESTful API using Spring Boot. This will help you understand how to design, develop, and implement a fully functioning REST API while applying key Spring Boot concepts.
+## Overview
+This is a Spring Boot application for managing a library system, featuring functionalities to borrow and return books, as well as sending email notifications to users upon successful transactions.
 
+## Features
+
+- Manage books in the library (add, update, delete).
+- Borrow and return books with notifications via email.
+- Use PostgreSQL as the database.
+- Asynchronous email sending using Spring Mail.
+
+## Technologies Used
+
+- **Java 17**
+- **Spring Boot 2.x**
+- **Spring Data JPA**
+- **PostgreSQL**
+- **Thymeleaf (optional for UI)**
+- **JUnit 5 for testing**
+
+  
 ## Project Setup
 
 ### Prerequisites
@@ -19,7 +36,27 @@ The goal of this project is to enhance the Simple Library Management System by e
 
 ### Run the Application
         mvn spring-boot:run
+### Running Tests
+        mvn test
 
+### Logging
+    SLF4J is used for logging throughout the application. You can configure logging levels in the application.properties file:
+
+### properties
+
+    logging.level.root=info
+    logging.level.com._b.Service=debug
+    logging.level.org.springframework=warn
+
+### Monitoring with Spring Boot Actuator
+-You can access the Actuator endpoints for monitoring:
+
+   Health Check: http://localhost:8080/actuator/health
+   Info: http://localhost:8080/actuator/info
+### Unit Testing
+   Unit tests are implemented using JUnit and Mockito. Mocking is used for dependencies in the service layer.
+
+Conclusion
 ### API Endpoints
 ### Fetch All Books
      URL: /api/books
@@ -37,7 +74,7 @@ The goal of this project is to enhance the Simple Library Management System by e
 ### Borrow a Book
     URL: /api/books/{id}/borrow
     Method: PUT
-    Description: Marks a book as borrowed.
+    Description: Marks a book as borrowed and mail will be send to admin.
 ### Return a Book
     URL: /api/books/{id}/return
     Method: PUT
